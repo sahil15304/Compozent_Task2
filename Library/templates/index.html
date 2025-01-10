@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library-Book List</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .books {
+            display: block;
+            text-align: center;
+        }
+
+        .header {
+            background-color: black;
+            height: 120px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .header h1 {
+            margin: 0;
+            padding: 0;
+            color: rgb(248, 241, 241);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            margin: 24px;
+            width: 100%;
+        }
+
+        .container-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .container-header h2 {
+            margin: 0;
+        }
+
+        .add-book-button {
+            background: blue;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-book-button:hover {
+            background: darkblue;
+        }
+
+        .books-list {
+            display: block;
+            margin: 24px 0;
+        }
+
+        .book-item {
+            padding: 16px;
+            border: 2px solid #f7f7f7;
+            border-radius: 8px;
+            background: #ebefff;
+            margin: 12px 0;
+            width: calc(100% - 48px); /* Full width minus padding */
+            display: block;
+        }
+
+        .book-item strong {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .book-actions {
+            display: flex;
+            justify-content: center; /* Centers the buttons horizontally */
+            gap: 16px; /* Adds space between buttons */
+            margin-top: 16px;
+        }
+
+        .book-actions button {
+            width: 120px;
+            border-radius: 4px;
+            padding: 7px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .edit-button {
+            background: rgb(27, 134, 15);
+        }
+
+        .edit-button:hover {
+            background: rgb(36, 28, 148);
+            color: white;
+        }
+
+        .delete-button {
+            background: rgb(255, 0, 0);
+        }
+
+        .delete-button:hover {
+            background: rgb(36, 28, 148);
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="books">
+    <div class="header">
+        <h1>Library Management System</h1>
+    </div>
+
+    <div class="container">
+        <div class="container-header">
+            <h2>List of Books</h2>
+            <a href="/add"><button class="add-book-button">Add a New Book</button></a>
+        </div>
+
+        <div class="books-list">
+            {% for book in books %}
+            <div class="book-item">
+                <strong>{{ book.title }}</strong> by {{ book.author }} ({{ book.year }})
+                <div class="book-actions">
+                    <a href="/update/{{ book.id }}">
+                        <button class="edit-button">Edit</button>
+                    </a>
+                    <a href="/delete/{{ book.id }}">
+                        <button class="delete-button">Delete</button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
